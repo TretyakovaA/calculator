@@ -31,21 +31,31 @@ public class CalculatorController {
     }
 
     @GetMapping(path = "/plus")
-    public String plus(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
+    public String plus(@RequestParam("num1", required=false) Integer num1 , @RequestParam("num2", required=false) Integer num2) {
+        if (num1 == null || num2 == null)
+            return "Вы не ввели переменную";
         return num1 + " + " + num2 + " = " + calculatorService.plus(num1, num2);
 
     }
 
     @GetMapping(path = "/minus")
-    public String minus (@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
+    public String minus (@RequestParam("num1", required=false) Integer num1 , @RequestParam("num2", required=false) {
+        if (num1 == null || num2 == null)
+            return "Вы не ввели переменную";
         return num1 + " - " + num2 + " = " + calculatorService.minus(num1, num2);
     }
     @GetMapping(path = "/multiply")
-    public String multiply (@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
+    public String multiply (@RequestParam("num1", required=false) Integer num1 , @RequestParam("num2", required=false) {
+        if (num1 == null || num2 == null)
+            return "Вы не ввели переменную";
         return num1 + " * " + num2 + " = " + calculatorService.multiply(num1, num2);
     }
     @GetMapping(path = "/divide")
-    public String divide (@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
+    public String divide (@RequestParam("num1", required=false) Integer num1 , @RequestParam("num2", required=false) {
+        if (num1 == null || num2 == null)
+            return "Вы не ввели переменную";
+        if (num2 == 0 )
+            return "На ноль делить нельзя";
         return num1 + " / " + num2 + " = " + calculatorService.divide(num1, num2);
     }
 }
